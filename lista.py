@@ -19,28 +19,15 @@ print('numeros generado:')
 for index in range(len(mi_list)):
 	print(mi_list[index])
 	mi_list.sort()
-	
-	
 
 print('numeros ordenados de forma ascendentes')
 
 mi_list.sort()
-for index in range(len(mi_list)):
-	if (mi_list[index])%2==0:
-	
-		print(mi_list[index])
+
+for num in mi_list:
+    if num%2==0:
+        print(num)
 
 for index in range(len(mi_list)):
 	if(mi_list[index])%2!=0:
 		print(mi_list[index])
-
-
-
-
-
-
-
-
-  
-
-
