@@ -1,0 +1,19 @@
+import argparse
+
+
+
+if __name__ == '__main__':
+
+	parser = argparse.ArgumentParser()
+
+	parser.add_argument('Nombre')
+	parser.add_argument('Edad')
+	parser.add_argument('Curso')
+
+	args = parser.parse_args()
+	estudiante ={'nombre': args.Nombre,'edad': args.Edad,'curso': args.Curso}
+
+	#print(list(estudiante.keys()))
+
+	for llave, datos in estudiante.iteritems():
+		print (llave, datos)
