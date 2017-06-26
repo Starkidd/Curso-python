@@ -59,7 +59,11 @@ if __name__ == '__main__':
 
         if values['cuidad'] == 'Managua':
             
-            print estudainteManagua.format(datos,values['edad'],values['cuidad'],values['anio'])
+            #print estudainteManagua.format(datos,values['edad'],values['cuidad'],values['anio'])
+            f = open('ESTUDIANTE_DE_MANAGUA.txt','a')
+            f.write(estudainteManagua.format(datos,values['edad'],values['cuidad'],values['anio']))
+            f.close()
+
 
     print''        
     print 'ESTUDAINTES DE MASAYA QUE CURSAN PRIMER ANIO'   
@@ -69,11 +73,12 @@ if __name__ == '__main__':
             
             print estudainteManagua.format(datos,values['edad'],values['cuidad'],values['anio'])
 
-    print''        
+
+    print''
     print 'ESTUDAINTES MENOR DE 21'   
     for datos,values in Diccionario.iteritems():
 
         if values['edad'] < 21 :
             
-            print estudainteManagua.format(datos,values['edad'],values['cuidad'],values['anio'])   
+            print estudainteManagua.format(datos,values['edad'],values['cuidad'],values['anio'])
 
