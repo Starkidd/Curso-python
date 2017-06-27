@@ -59,7 +59,7 @@ if __name__ == '__main__':
 
         if values['cuidad'] == 'Managua':
             
-            #print estudainteManagua.format(datos,values['edad'],values['cuidad'],values['anio'])
+            print estudainteManagua.format(datos,values['edad'],values['cuidad'],values['anio'])
             f = open('ESTUDIANTE_DE_MANAGUA.txt','a')
             f.write(estudainteManagua.format(datos,values['edad'],values['cuidad'],values['anio']))
             f.close()
@@ -72,6 +72,9 @@ if __name__ == '__main__':
         if values['cuidad'] == 'Masaya' and values['anio'] == 1:
             
             print estudainteManagua.format(datos,values['edad'],values['cuidad'],values['anio'])
+            f = open('ESTUDIANTE_DE_MASAYA.txt','a')
+            f.write(estudainteManagua.format(datos,values['edad'],values['cuidad'],values['anio']))
+            f.close()
 
 
     print''
@@ -81,4 +84,7 @@ if __name__ == '__main__':
         if values['edad'] < 21 :
             
             print estudainteManagua.format(datos,values['edad'],values['cuidad'],values['anio'])
+            f = open('ESTUDIANTE_MENOR.txt','a')
+            f.write(estudainteManagua.format(datos,values['edad'],values['cuidad'],values['anio']))
+            f.close()
 
