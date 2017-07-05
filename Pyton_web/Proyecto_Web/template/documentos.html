@@ -1,0 +1,11 @@
+{%extends 'base.html'%}
+
+{%block contenido%}
+
+
+
+{%for lista in docs%}  
+  <li class="list-group-item ">{{lista.nombre}}</li>
+    {%endfor%}
+
+{%endblock%}
