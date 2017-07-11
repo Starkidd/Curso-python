@@ -13,28 +13,42 @@ class MiVentana(Gtk.Window):
 		self.agregar_boton()
 		self.agregar_text()
 		self.agregar_label()
+		
+		
+
 
 	def agregar_contenedor(self):
 		self.contenedor = Gtk.Grid()
 		self.contenedor.set_column_homogeneous(True)
 		self.contenedor.set_row_homogeneous(False)
-
+		self.add(self.contenedor)
 
 
 	def agregar_text(self):
-		self.text = Gtk.Entry("TEXT 1")
-		text.get_text()
-		#agregar_contenedor(contenedor.attach(self.text,0,0,1,1))
-
+		self.text = Gtk.Entry()
+		self.contenedor.attach(self.text,0,0,1,1)
+		
+		
 
 	def agregar_boton(self):
 		self.boton = Gtk.Button('BOTON 1')
+		self.boton.connect('clicked',self.pasar_valor)
+		self.contenedor.attach(self.boton,0,1,1,1)
 		
 		
 
 	def agregar_label(self):
-		self.label = Gtk.Label('LABEL 1')
-		label.set_markup('texto')
+		self.label = Gtk.Label('Texto Definido')
+		self.contenedor.attach(self.label,0,2,1,1)
+
+
+	def pasar_valor(self,temporal):
+		inp = self.text.get_text()
+		self.label.set_markup(inp)
+
+
+
+
 		
 
 if __name__ == '__main__':
