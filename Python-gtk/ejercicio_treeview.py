@@ -11,7 +11,9 @@ class MiVentana(Gtk.Window):
 		self.connect('delete-event',Gtk.main_quit)
 		self.agregar_contenedor()
 		self.agregar_entrada()
+		self.agregar_boton()
 		self.agregar_lista()
+		
 
 
 	def agregar_contenedor(self):
@@ -23,18 +25,27 @@ class MiVentana(Gtk.Window):
 
 	def agregar_entrada (self):
 		self.entrada = Gtk.Entry()
-		self.contenedor.attach(self.entrada,0,0,1,1)
+		self.contenedor.attach(self.entrada,0,0,2,1)
+		self.entradaMonto = Gtk.Entry()
+		self.contenedor.attach(self.entradaMonto,2,0,1,1)
 
 
-	def agregar_boton (self):
-		self.boton=Gtk.Button('Agregar')
+
+
+	def agregar_boton(self):
+		self.boton = Gtk.Button('Agregar')
+		self.label = Gtk.Label()
+		self.contenedor.attach_next_to(self.label, self.entrada, Gtk.PositionType.BOTTOM, 1,1)
+
 		self.contenedor.attach_next_to(
 			self.boton,
-			self.entrada,
+			self.label,
 			Gtk.PositionType.BOTTOM,
-			1,
+			3,
 			1
 			)
+
+		
 
 
 	def agregar_lista(self):
@@ -61,7 +72,35 @@ class MiVentana(Gtk.Window):
 		self.lista_activos.append_column(columna_descripcion)
 		self.lista_activos.append_column(columna_monto)
 
-		self.contenedor.attach_next_to(self.lista_activos,self.boton,Gtk.PositionType.BOTTOM,1,1)
+		self.contenedor.attach_next_to(
+			self.lista_activos,
+			self.boton,
+			Gtk.PositionType.BOTTOM,
+			3, 
+			1)
+
+		self.boton.connect('clicked',self.agregar_fila)
+		
+	def agregar_fila(self,btn):
+
+
+
+		if self.entrada.get_text() and self.entradaMonto.get_text():
+			textoDescrip = self.entrada.get_text()
+			textoMonto = self.entradaMonto.get_text()
+			self.modelo.append([textoDescrip,float(textoMonto)])
+			self.entrada.set_text('')
+			self.entradaMonto.set_text('')
+			self.label.set_text("")
+		else:
+			self.label.set_markup('<b>Inserte los valores correctamente</b>')
+
+
+		
+
+
+		
+
 
 
 
