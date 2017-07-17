@@ -32,12 +32,13 @@ class MiVentana(Gtk.Window):
 		self.contenedor.attach(self.entrada,0,0,2,1)
 		self.entradaMonto = Gtk.Entry()
 		self.contenedor.attach(self.entradaMonto,2,0,1,1)
+		
 
 
 	def agregar_boton_activo(self):
 		self.boton = Gtk.Button('Agregar')
 		self.label = Gtk.Label()
-		self.contenedor.attach_next_to(self.label, self.entrada, Gtk.PositionType.BOTTOM, 1,1)
+		self.contenedor.attach_next_to(self.label, self.entrada, Gtk.PositionType.BOTTOM, 3,1)
 
 		self.contenedor.attach_next_to(
 			self.boton,
@@ -46,6 +47,10 @@ class MiVentana(Gtk.Window):
 			3,
 			1
 			)
+		self.label_act = Gtk.Label('Total Activo:')
+		self.contenedor.attach(self.label_act,0,9,2,1)
+		
+		
 
 	def agregar_lista_activo(self):
 
@@ -71,6 +76,7 @@ class MiVentana(Gtk.Window):
 
 
 	def agregar_fila_activo(self,btn):
+		temp = 0
 
 
 		if self.entrada.get_text() and self.entradaMonto.get_text():
@@ -80,13 +86,25 @@ class MiVentana(Gtk.Window):
 			self.entrada.set_text('')
 			self.entradaMonto.set_text('')
 			self.label.set_text("")
+
+
+			for fila_activo in self.modelo:
+				
+				total = float(fila_activo[1])
+				temp += total
+
+			print temp
+
+			msj = 'Total Activo {0}'
+
+			self.label_act.set_text(msj.format((str(temp))))
+
+
+
+
+
 		else:
-			self.label.set_markup('<b>Inserte los valores correctamente1</b>')
-
-
-
-
-
+			self.label.set_markup('<b>Inserte los valores correctamente</b>')
 
 
 
@@ -100,15 +118,17 @@ class MiVentana(Gtk.Window):
 	def agregar_boton_pasivo(self):
 		self.boton1 = Gtk.Button('Agregar')
 		self.contenedor.attach(self.boton1,0,6,3,1)
-
-
+		self.label_pasivo = Gtk.Label()
+		self.contenedor.attach(self.label_pasivo,0,4,3,1)
+		self.label_pas = Gtk.Label('Total Pasivo')
+		self.contenedor.attach(self.label_pas,0,10,2,1)
 
 
 
 	def agregar_listaPasivo(self):
 
-		self.modelo = Gtk.ListStore(str,float)
-		self.lista_pasivo = Gtk.TreeView(self.modelo)
+		self.modelo1 = Gtk.ListStore(str,float)
+		self.lista_pasivo = Gtk.TreeView(self.modelo1)
 
 		descripcionPasivo = Gtk.CellRendererText()
 		columna_descripcionPasivo = Gtk.TreeViewColumn('Descripcion',descripcionPasivo,text=0)
@@ -131,16 +151,43 @@ class MiVentana(Gtk.Window):
 
 
 	def agregar_fila_pasivo(self,btn):
+		temp = 0
 
 		if self.entrada_pasivo.get_text() and self.entradaMonto_pasivo.get_text():
+
 			textoDescrip_pasivo = self.entrada_pasivo.get_text()
 			textoMonto_pasivo = self.entradaMonto_pasivo.get_text()
-			self.modelo.append([textoDescrip_pasivo,float(textoMonto_pasivo)])
+			self.modelo1.append([textoDescrip_pasivo,float(textoMonto_pasivo)])
+			#self.treeiter = self.modelo1.append([textoDescrip_pasivo,float(textoMonto_pasivo)])
 			self.entrada_pasivo.set_text('')
 			self.entradaMonto_pasivo.set_text('')
-			self.label.set_text("")
+			self.label_pasivo.set_text("")
+
+			
+			for fila_pasivo in self.modelo1:
+				
+				total = float(fila_pasivo[1])
+				temp += total
+
+			print temp
+
+			msj = 'Total Pasivo {0}'
+
+			self.label_pas.set_text(msj.format((str(temp))))
+
+
+
+			
+				
+
+		
+			
+
 		else:
-			self.label.set_markup('<b>Inserte los valores correctamente2</b>')
+			self.label_pasivo.set_markup('<b>Inserte los valores correctamente</b>')
+
+
+	
 
 
 
