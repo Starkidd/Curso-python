@@ -13,9 +13,11 @@ class MiVentana(Gtk.Window):
 		self.agregar_entrada_activo()
 		self.agregar_boton_activo()
 		self.agregar_lista_activo()
-		self.agregar_entrada_pasivo()
 		self.agregar_boton_pasivo()
+		self.agregar_entrada_pasivo()
+		
 		self.agregar_listaPasivo()
+		#self.agregar_fila_pasivo()
 
 
 
@@ -79,8 +81,7 @@ class MiVentana(Gtk.Window):
 			self.entradaMonto.set_text('')
 			self.label.set_text("")
 		else:
-			self.label.set_markup('<b>Inserte los valores correctamente</b>')
-
+			self.label.set_markup('<b>Inserte los valores correctamente1</b>')
 
 
 
@@ -91,14 +92,16 @@ class MiVentana(Gtk.Window):
 
 	def agregar_entrada_pasivo (self):
 		self.entrada_pasivo = Gtk.Entry()
-		self.contenedor.attach_next_to(self.entrada_pasivo, self.boton1,Gtk.PositionType.BOTTOM,1,1)
+		self.contenedor.attach_next_to(self.entrada_pasivo, self.boton1,Gtk.PositionType.TOP,2,1)
 		self.entradaMonto_pasivo = Gtk.Entry()
-		self.contenedor.attach(self.entradaMonto_pasivo, self.entrada_pasivo,Gtk.PositionType.RIGHT,1,1)
-		
+		self.contenedor.attach_next_to(self.entradaMonto_pasivo, self.entrada_pasivo,Gtk.PositionType.RIGHT,1,1)
+	
 
 	def agregar_boton_pasivo(self):
 		self.boton1 = Gtk.Button('Agregar')
-		self.contenedor.attach(self.boton1,0,6,6,1)
+		self.contenedor.attach(self.boton1,0,6,3,1)
+
+
 
 
 
@@ -127,17 +130,17 @@ class MiVentana(Gtk.Window):
 
 
 
-	def agregar_fila_pasivo(self):
+	def agregar_fila_pasivo(self,btn):
 
 		if self.entrada_pasivo.get_text() and self.entradaMonto_pasivo.get_text():
-			textoDescrip = self.entrada_pasivo.get_text()
-			textoMonto = self.entradaMonto_pasivo.get_text()
-			self.modelo.append([textoDescrip,float(textoMonto)])
+			textoDescrip_pasivo = self.entrada_pasivo.get_text()
+			textoMonto_pasivo = self.entradaMonto_pasivo.get_text()
+			self.modelo.append([textoDescrip_pasivo,float(textoMonto_pasivo)])
 			self.entrada_pasivo.set_text('')
 			self.entradaMonto_pasivo.set_text('')
 			self.label.set_text("")
 		else:
-			self.label.set_markup('<b>Inserte los valores correctamente</b>')
+			self.label.set_markup('<b>Inserte los valores correctamente2</b>')
 
 
 
