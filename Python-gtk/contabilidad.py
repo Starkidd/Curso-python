@@ -93,9 +93,7 @@ class MiVentana(Gtk.Window):
 				total = float(fila_activo[1])
 				self.temp_activo += total
 
-			#print temp
-
-			msj = 'Total Activo {0}'
+			msj = 'Total Activo: {0}'
 
 			self.label_act.set_text(msj.format((str(self.temp_activo))))
 			self.capital()
@@ -121,7 +119,7 @@ class MiVentana(Gtk.Window):
 		self.contenedor.attach(self.boton1,0,6,3,1)
 		self.label_pasivo = Gtk.Label()
 		self.contenedor.attach(self.label_pasivo,0,4,3,1)
-		self.label_pas = Gtk.Label('Total Pasivo')
+		self.label_pas = Gtk.Label('Total Pasivo:')
 		self.contenedor.attach(self.label_pas,0,10,2,1)
 		self.label_capital = Gtk.Label('Capital:')
 		self.contenedor.attach(self.label_capital,0,11,2,1)
@@ -172,9 +170,9 @@ class MiVentana(Gtk.Window):
 				total = float(fila_pasivo[1])
 				self.temp_pasivo += total
 
-			#print temp
+			
 
-			msj = 'Total Pasivo {0}'
+			msj = 'Total Pasivo: {0}'
 
 			self.label_pas.set_text(msj.format((str(self.temp_pasivo))))
 			self.capital()
@@ -190,10 +188,10 @@ class MiVentana(Gtk.Window):
 
 		self.temp_capital = float(self.temp_activo) - float(self.temp_pasivo)
 
-		msjcapital = 'Capital {0}'
+		msjcapital = 'Capital: {0}'
 		self.label_capital.set_text(msjcapital.format(self.temp_capital))
 
-		print temp_capital
+		
 
 
 
