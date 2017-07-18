@@ -76,7 +76,7 @@ class MiVentana(Gtk.Window):
 
 
 	def agregar_fila_activo(self,btn):
-		temp = 0
+		self.temp_activo = 0
 
 
 		if self.entrada.get_text() and self.entradaMonto.get_text():
@@ -91,13 +91,14 @@ class MiVentana(Gtk.Window):
 			for fila_activo in self.modelo:
 				
 				total = float(fila_activo[1])
-				temp += total
+				self.temp_activo += total
 
-			print temp
+			#print temp
 
 			msj = 'Total Activo {0}'
 
-			self.label_act.set_text(msj.format((str(temp))))
+			self.label_act.set_text(msj.format((str(self.temp_activo))))
+			self.capital()
 
 
 
@@ -122,6 +123,8 @@ class MiVentana(Gtk.Window):
 		self.contenedor.attach(self.label_pasivo,0,4,3,1)
 		self.label_pas = Gtk.Label('Total Pasivo')
 		self.contenedor.attach(self.label_pas,0,10,2,1)
+		self.label_capital = Gtk.Label('Capital:')
+		self.contenedor.attach(self.label_capital,0,11,2,1)
 
 
 
@@ -151,7 +154,7 @@ class MiVentana(Gtk.Window):
 
 
 	def agregar_fila_pasivo(self,btn):
-		temp = 0
+		self.temp_pasivo = 0
 
 		if self.entrada_pasivo.get_text() and self.entradaMonto_pasivo.get_text():
 
@@ -167,27 +170,30 @@ class MiVentana(Gtk.Window):
 			for fila_pasivo in self.modelo1:
 				
 				total = float(fila_pasivo[1])
-				temp += total
+				self.temp_pasivo += total
 
-			print temp
+			#print temp
 
 			msj = 'Total Pasivo {0}'
 
-			self.label_pas.set_text(msj.format((str(temp))))
-
-
-
-			
-				
-
-		
-			
+			self.label_pas.set_text(msj.format((str(self.temp_pasivo))))
+			self.capital()
+	
 
 		else:
 			self.label_pasivo.set_markup('<b>Inserte los valores correctamente</b>')
 
 
-	
+	def capital (self):
+
+		self.temp_capital = 0
+
+		self.temp_capital = float(self.temp_activo) - float(self.temp_pasivo)
+
+		msjcapital = 'Capital {0}'
+		self.label_capital.set_text(msjcapital.format(self.temp_capital))
+
+		print temp_capital
 
 
 
